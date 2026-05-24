@@ -118,3 +118,4 @@ FitnessTracker
 │
 ├── pom.xml
 └── README.md
+To start the project create a batch file (.bat) which can run the back and front for you and just open on localhost
