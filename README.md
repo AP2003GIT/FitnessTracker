@@ -1,43 +1,77 @@
 # Fitness Tracker
 
-Fitness Tracker is a full-stack web application for calculating daily calorie expenditure and estimating weight change based on physical activity.
+Fitness Tracker is a full-stack fitness application for creating and tracking detailed workout sessions.  
+Users can log complete training sessions by adding muscle groups, exercises, sets, repetitions, weight, rest time, workout duration and intensity.
 
-The user enters their current weight, number of push-ups, cycling duration, and the number of days. The application calculates calories burned from push-ups and cycling, total calories burned over the selected period, estimated weight loss, and projected body weight.
+The backend automatically calculates workout statistics such as total exercises, total sets, total reps, total training volume and estimated calories burned.
 
-## Features
+---
 
-- Enter current body weight
-- Enter daily number of push-ups
-- Enter daily cycling duration in minutes
-- Choose calculation period in days
-- Calculate:
-  - Calories burned from push-ups
-  - Calories burned from cycling
-  - Total daily calories burned
-  - Total calories burned over time
-  - Estimated weight loss
-  - Estimated weight after the selected period
-- Spring Boot REST API backend
-- Vue frontend
-- One-click project startup using a `.bat` launcher
+## Project Description
+
+This application is designed as a gym workout tracker.  
+Instead of entering only basic workout data, users can create a full training session, for example:
+
+- Back workout
+  - Lat Pulldown
+  - Pull Ups
+  - Rows
+
+- Leg workout
+  - Squats
+  - Bulgarian Split Squats
+  - Leg Press
+
+For each exercise, users can add multiple sets with reps, weight and rest time.
+
+After saving the workout, the application returns a workout summary.
+
+---
+
+## Main Features
+
+- Create full workout sessions
+- Select muscle group
+- Add multiple exercises per workout
+- Add multiple sets per exercise
+- Track reps, weight and rest time
+- Track workout duration
+- Select workout intensity
+- Calculate total number of exercises
+- Calculate total number of sets
+- Calculate total number of reps
+- Calculate total training volume
+- Estimate calories burned
+- Save workouts into PostgreSQL database
+- Display workout summary on the frontend
+
+---
 
 ## Technologies Used
 
 ### Backend
 
-- Java
+- Java 21
 - Spring Boot
+- Spring Web
+- Spring Data JPA
+- Hibernate
+- PostgreSQL
 - Maven
-- REST API
-- Jakarta Validation
 
 ### Frontend
 
-- JavaScript
 - Vue.js
-- Vite
+- JavaScript
 - HTML
 - CSS
+
+### Database
+
+- PostgreSQL
+- pgAdmin 4
+
+---
 
 ## Project Structure
 
@@ -49,25 +83,38 @@ FitnessTracker
 │       ├── java
 │       │   └── com.fitness
 │       │       ├── controller
-│       │       │   └── FitnessController.java
+│       │       │   └── WorkoutController.java
+│       │       │
 │       │       ├── dto
-│       │       │   ├── FitnessRequest.java
-│       │       │   └── FitnessResponse.java
+│       │       │   ├── CreateWorkoutRequest.java
+│       │       │   ├── ExerciseRequest.java
+│       │       │   ├── SetRequest.java
+│       │       │   └── WorkoutSummaryResponse.java
+│       │       │
+│       │       ├── entity
+│       │       │   ├── WorkoutSession.java
+│       │       │   ├── ExerciseEntry.java
+│       │       │   └── SetEntry.java
+│       │       │
+│       │       ├── enums
+│       │       │   ├── MuscleGroup.java
+│       │       │   └── WorkoutIntensity.java
+│       │       │
+│       │       ├── repository
+│       │       │   ├── WorkoutSessionRepository.java
+│       │       │   ├── ExerciseEntryRepository.java
+│       │       │   └── SetEntryRepository.java
+│       │       │
 │       │       ├── service
-│       │       │   └── FitnessCalculationService.java
+│       │       │   └── WorkoutService.java
+│       │       │
 │       │       └── FitnessTrackerApplication.java
 │       │
 │       └── resources
 │           └── application.properties
 │
 ├── frontend
-│   ├── src
-│   │   ├── App.vue
-│   │   ├── main.js
-│   │   └── style.css
-│   └── package.json
+│   └── Vue frontend application
 │
 ├── pom.xml
-├── mvnw.cmd
-├── StartFitnessTracker.bat
 └── README.md
